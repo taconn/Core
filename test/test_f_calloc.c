@@ -34,6 +34,6 @@ int	main(void)
 	if (f_calloc(0, 5) != NULL)
 		failed++;
 	f_free(b);
-	printf("%d failed\n", failed);
+	printf("\033[93mtest_f_calloc.c %d failed\033[0m\n", failed);
 	return (failed != 0);
 }

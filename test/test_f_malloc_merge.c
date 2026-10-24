@@ -20,6 +20,6 @@ int	main(void)
 		failed++;
 	f_free(d);
 	f_free(c);
-	printf("%d failed\n", failed);
+	printf("\033[93m test_f_malloc_merge.c %d failed\033[0m\n", failed);
 	return (failed != 0);
 }
