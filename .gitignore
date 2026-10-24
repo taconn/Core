@@ -1,6 +1,9 @@
 *.o
 *.a
 *.bak
-test/*
-!test/*.c
-!test/Makefile
+
+/explorer/explorer
+
+/test/*
+!/test/*.c
+!/test/Makefile
