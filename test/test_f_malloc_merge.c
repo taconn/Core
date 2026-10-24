@@ -1,3 +1,4 @@
+#include "f_printf.h"
 #include <stdio.h>
 #include "f_malloc.h"
 
@@ -17,9 +18,9 @@ int	main(void)
 	f_free(b);
 	d = f_malloc(200);
 	if (d != a)
-		failed++;
+		do { f_printf("\033[93mtest_f_malloc_merge.c| > \033[0mFAIL: check at line %d\n", __LINE__); failed++; } while (0);
 	f_free(d);
 	f_free(c);
-	printf("\033[93m test_f_malloc_merge.c %d failed\033[0m\n", failed);
+	f_printf("\033[93m \033[93mtest_f_malloc_merge.c| > \033[0m%d failed\033[0m\n", failed);
 	return (failed != 0);
 }

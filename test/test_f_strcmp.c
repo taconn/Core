@@ -1,3 +1,5 @@
+#include "f_colors.h"
+#include "f_printf.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -31,7 +33,7 @@ static int	check(const char *a, const char *b)
 {
 	if (sign(f_strcmp(a, b)) == sign(strcmp(a, b)))
 		return (0);
-	printf("KO  \"%s\" vs \"%s\"\n", a, b);
+	f_printf("KO  \"%s\" vs \"%s\"\n", a, b);
 	return (1);
 }
 
@@ -61,6 +63,6 @@ int	main(void)
 		failed += check(a, b);
 		i++;
 	}
-	printf("%d tests, %d failed\n", TESTS + 9, failed);
+	f_printf(BRIGHT_YELLOW "\033[93mtest_f_strcmp.c| > \033[0m%d tests, %d failed" RESET "\n", TESTS + 9, failed);
 	return (failed != 0);
 }

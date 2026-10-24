@@ -1,3 +1,5 @@
+#include "f_colors.h"
+#include "f_printf.h"
 #include <stdio.h>
 #include "f_malloc.h"
 
@@ -14,9 +16,9 @@ int	main(void)
 	b = f_malloc(100);
 	c = f_malloc(100);
 	if (b != a)
-		failed++;
+		do { f_printf("\033[93mtest_f_malloc_split.c| > \033[0mFAIL: check at line %d\n", __LINE__); failed++; } while (0);
 	if (c <= b || c >= a + 1000)
-		failed++;
-	printf("%d failed\n", failed);
+		do { f_printf("\033[93mtest_f_malloc_split.c| > \033[0mFAIL: check at line %d\n", __LINE__); failed++; } while (0);
+	f_printf(BRIGHT_YELLOW "\033[93mtest_f_malloc_split.c| > \033[0m%d failed" RESET "\n", failed);
 	return (failed != 0);
 }

@@ -1,6 +1,6 @@
 LIB_DIR = ../library
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -I$(LIB_DIR) -include f_colors.h
+CFLAGS = -Wall -Wextra -Werror -I$(LIB_DIR)
 
 SRC = $(wildcard test_*.c)
 BIN = $(SRC:.c=)

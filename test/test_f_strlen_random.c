@@ -1,3 +1,5 @@
+#include "f_colors.h"
+#include "f_printf.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -39,11 +41,11 @@ int	main(void)
 		expected = (int)strlen(buf);
 		if (got != expected)
 		{
-			printf("KO  len=%d, expected %d, got %d\n", len, expected, got);
-			failed++;
+			f_printf("KO  len=%d, expected %d, got %d\n", len, expected, got);
+			do { f_printf("\033[93mtest_f_strlen_random.c| > \033[0mFAIL: check at line %d\n", __LINE__); failed++; } while (0);
 		}
 		i++;
 	}
-	printf("%d tests, %d failed\n", TESTS, failed);
+	f_printf(BRIGHT_YELLOW "\033[93mtest_f_strlen_random.c| > \033[0m%d tests, %d failed" RESET "\n", TESTS, failed);
 	return (failed != 0);
 }

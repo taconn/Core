@@ -1,3 +1,5 @@
+#include "f_colors.h"
+#include "f_printf.h"
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
@@ -24,8 +26,8 @@ int	main(void)
 		n = 0;
 	buf[n] = '\0';
 	if (strcmp(buf, "hello world") != 0)
-		failed++;
-	f_putstr("(f_putstr works)\n");
-	printf("%d failed\n", failed);
+		do { f_printf("\033[93mtest_f_putstr.c| > \033[0mFAIL: expected output \"hello world\", got \"%s\"\n", buf); failed++; } while (0);
+	f_putstr("\n[f_putstr works]\n");
+	f_printf(BRIGHT_YELLOW "\033[93mtest_f_putstr.c| > \033[0m%d failed" RESET "\n", failed);
 	return (failed != 0);
 }

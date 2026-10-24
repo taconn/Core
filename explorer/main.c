@@ -8,6 +8,7 @@
 #include <sys/wait.h>
 #include <limits.h>
 #include "f_colors.h"
+#include "f_printf.h"
 
 #define MAX_ENTRIES 1024
 #define CYAN "\033[36m"
@@ -91,40 +92,40 @@ static void draw(const char *path, t_entry *entries,
 
     fflush(stdout);
     write(STDOUT_FILENO, "\033[2J\033[H", 7);
-    printf("\033[36m");
-    printf("===================================\n");
-    printf("  ██████╗  ██████╗ ██████╗ ███████╗\n");
-    printf(" ██╔════╝ ██╔═══██╗██╔══██╗██╔════╝\n");
-    printf(" ██║      ██║   ██║██████╔╝█████╗  \n");
-    printf(" ██║      ██║   ██║██╔══██╗██╔══╝  \n");
-    printf(" ╚██████╗ ╚██████╔╝██║  ██║███████╗\n");
-    printf("  ╚═════╝  ╚═════╝ ╚═╝  ╚═╝╚══════╝\n");
-    printf("===================================\n");
-    printf("\033[0m\n");
+    f_printf("\033[36m");
+    f_printf("===================================\n");
+    f_printf("  ██████╗  ██████╗ ██████╗ ███████╗\n");
+    f_printf(" ██╔════╝ ██╔═══██╗██╔══██╗██╔════╝\n");
+    f_printf(" ██║      ██║   ██║██████╔╝█████╗  \n");
+    f_printf(" ██║      ██║   ██║██╔══██╗██╔══╝  \n");
+    f_printf(" ╚██████╗ ╚██████╔╝██║  ██║███████╗\n");
+    f_printf("  ╚═════╝  ╚═════╝ ╚═╝  ╚═╝╚══════╝\n");
+    f_printf("===================================\n");
+    f_printf("\033[0m\n");
 
-    printf("Path: %s\n\n", path);
+    f_printf("Path: %s\n\n", path);
 
     i = 0;
     while (i < count)
     {
         if (i == selected)
-            printf("\033[7m");
+            f_printf("\033[7m");
 
         if (entries[i].is_dir)
-            printf("\033[36m[DIR]  %s\033[0m\n",
+            f_printf("\033[36m[DIR]  %s\033[0m\n",
                 entries[i].name);
         else
-            printf("[FILE] %s\n", entries[i].name);
+            f_printf("[FILE] %s\n", entries[i].name);
 
         if (i == selected)
-            printf("\033[0m");
+            f_printf("\033[0m");
         i++;
     }
 
-    printf("\033[36m");
-    printf("===================================");
-    printf("\nup/down: move | enter: open | bckspc: back | q: quit | t : terminal\n");
-    printf("___________________________________________________________________");
+    f_printf("\033[36m");
+    f_printf("===================================");
+    f_printf("\nup/down: move | enter: open | bckspc: back | q: quit | t : terminal\n");
+    f_printf("___________________________________________________________________");
     fflush(stdout);
 }
 
@@ -162,10 +163,10 @@ static void run_command(const char *path)
 
     while (1)
     {
-        printf("\033[0m");
-        printf(BRIGHT_WHITE "\n%s" RESET"\n", path);
-        printf(BRIGHT_WHITE "'mq' for exit" RESET "\n");
-        printf("> ");
+        f_printf("\033[0m");
+        f_printf(BRIGHT_WHITE "\n%s" RESET"\n", path);
+        f_printf(BRIGHT_WHITE "'mq' for exit" RESET "\n");
+        f_printf("> ");
         fflush(stdout);
 
         if (fgets(command, sizeof(command), stdin) == NULL)
@@ -280,6 +281,6 @@ else if (key == 't' || key == 'T')
         }
     }
     free(entries);
-    printf("\033[0m\033[2J\033[H");
+    f_printf("\033[0m\033[2J\033[H");
     return (0);
 }
